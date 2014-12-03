@@ -9,3 +9,4 @@ clean:
 
 $(FILE).pdf: $(FILE).tex
 		pdflatex $(FILE).tex
+		pdflatex $(FILE).tex
