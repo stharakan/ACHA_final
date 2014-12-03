@@ -1,0 +1,220 @@
+\appendix
+
+%%%%%%%%%%%%%%%%%%%%%%% 1D Examples %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[t]
+\frametitle{1D examples}
+\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+1D examples shamelessly stolen from
+\href{http://compsens.eecs.umich.edu/sensing_tutorial.php}{\textcolor{blue}{http://compsens.eecs.umich.edu/sensing\_tutorial.php}}
+
+In these 1D examples we solve the problem
+\begin{align*}
+	\min \norm{x}_{\ell_1} \text{ subject to } \norm{Ax - y}_{\ell_2} \leq \epsilon
+\end{align*}
+
+using the package \href{http://users.ece.gatech.edu/~justin/l1magic/}{\textcolor{blue}{$\ell_1$-MAGIC}} to perform the optimization.
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\frametitle{1D examples - sparse in frequency}
+\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+\centering
+\includegraphics[scale=0.5]{fig/spfreq1D.pdf}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\frametitle{1D examples - sparse in frequency}
+\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+\centering
+\includegraphics[scale=0.5]{fig/spfreq1Drec.pdf}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\frametitle{1D examples - sparse in time}
+\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+\centering
+\includegraphics[scale=0.5]{fig/sptime.pdf}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\frametitle{1D examples - sparse in time}
+\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+\centering
+\includegraphics[scale=0.5]{fig/sptime2.pdf}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%% 1D Examples End  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\frametitle{1D examples - music}
+\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+
+\centering
+\includegraphics[scale=0.4]{fig/tstimefreq.pdf}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\frametitle{1D examples - music}
+\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+
+\centering
+\includegraphics[scale=0.4]{fig/tsfreq.pdf}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\frametitle{1D examples - music}
+\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+
+\centering
+\includegraphics[scale=0.4]{fig/tstime.pdf}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\frametitle{2D examples - phantom}
+\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+Phantom image, 4.5 SNR and only sampling 1\% of the data
+
+\centering
+\includegraphics[scale=0.5]{fig/phantom100.pdf}
+
+\end{frame}
+
+\iftrue
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{2D examples - Some more}
+\pause
+	
+\begin{figure}
+\centering
+\includegraphics[scale=0.2]{fig/sameerl1rec.pdf}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{2D examples - Sameer's long lost twin brother?}
+
+$\norm{x^\# -x_0}_{\ell_2} = 0.1092$, $\ell_1$ reconstruction, no noise.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.2]{fig/oscar.pdf}
+\end{figure}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{2D examples - Sameer's long lost cousin?}
+
+$\norm{x^\# -x_0}_{\ell_2} = 0.1553$, SNR=4.5, 1:10 sampling to image size ratio.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{fig/sloth.pdf}
+\end{figure}
+
+
+\end{frame}
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{2D examples - Rachel}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{fig/rachel.pdf}
+\end{figure}
+
+All else equal, smaller images don't perform as well. We need a high ratio of image size to number of samples
+to be able to reconstruct it well.
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{Compressed Sensing is Awesome!}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{fig/trex.pdf}
+\end{figure}
+
+
+\end{frame}
+
+\end{document}
+
+
