@@ -5,7 +5,7 @@ all: $(FILE).pdf
 .PHONY: clean
 
 clean:
-		\rm *.aux *.blg *.out *.bbl *.log
+		\rm *.aux *.nav *.out *.snm *.toc *.log
 
 $(FILE).pdf: $(FILE).tex
 		pdflatex $(FILE).tex
