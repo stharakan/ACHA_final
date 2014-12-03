@@ -7,6 +7,6 @@ all: $(FILE).pdf
 clean:
 		\rm *.aux *.nav *.out *.snm *.toc *.log *.pdf
 
-$(FILE).pdf: $(FILE).tex
+$(FILE).pdf: $(FILE).tex *.tex
 		pdflatex $(FILE).tex
 		pdflatex $(FILE).tex
