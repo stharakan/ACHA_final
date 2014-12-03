@@ -6,14 +6,14 @@
 \frametitle{Incoherence}
 \framesubtitle{~~}  %% needed for proper positioning of the logo ...
 
-Given an exactly sparse or a compressible signal, we solve
+Recall that the incoherence of two matrices $\Phi$ and $\Psi$ is given by 
 
-\begin{align*}
-	\min \norm{x}_{\ell_1} \text{ subject to } \norm{Ax - y}_{\ell_2} \leq \epsilon
-\end{align*}
+\begin{align}
+	\mu = \max_{i,j} |(\Phi^* \Psi)_{ij}|
+	\label{incoherence}
+\end{align}
 
-with added Gaussian white noise with standard deviation $\sigma\in [0.01,0.5]$.
-
+We looked into the incoherence of different bases with the Hadamard basis
 
 \end{frame}
 
@@ -22,10 +22,8 @@ with added Gaussian white noise with standard deviation $\sigma\in [0.01,0.5]$.
 %% Frame
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[t]
-	\frametitle{2D examples - \st{Lena} Sameer}
+	\frametitle{Incoherence of bases with Hadamard}
 
-How much data do we really need? Using an SNR of 4.5 we did some tests.
-\pause
 
 \begin{table}[h]
 \begin{tabular}{l|l|l|l|l|l|l}
