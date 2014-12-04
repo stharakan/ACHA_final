@@ -3,6 +3,27 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[t]
+\frametitle{Numerical Results}
+\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+We tested the DFR and circulant/Toeplitz sensing matrices on a small example
+test image. The image was a Modified Shepp-Logan phantom which was $128\times 128$
+pixels.
+
+\begin{figure}[h!]
+  \centering
+	\caption{Modified Shepp-Logan phantom reconstructed using a circulant matrix with RPMS restriction}
+    \includegraphics[width=0.6\textwidth]{figs/rpms.pdf}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[t]
 \frametitle{Matrix Type and Error}
 \framesubtitle{~~}  %% needed for proper positioning of the logo ...
 
@@ -67,6 +88,9 @@
 \begin{frame}[t]
 \frametitle{Timing}
 \framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+For these timing results, we use the same image as before, but half the size, as the 
+Gaussian (dense, unstructured) matrix was too large.
 
 
 \begin{table}[h]
