@@ -21,17 +21,17 @@ With $\Psi$ as an $n \times n$ orthogonal representation matrix, i.e. $t_{1}$ is
 
 $$
 T = \begin{bmatrix}
-	t_{n} & t_{n-1} & ...& t_{1}           \\[0.3em]
-	t_{n+1} & t_n & ... & t_{2} \\[0.3em]
+	t_{1} & t_{2} & ...& t_{n}           \\[0.3em]
+	t_{n+1} & t_{1} & ... & t_{n-1} \\[0.3em]
 	\ddots &\ddots & \ddots &    \\[0.3em]
-	t_{2n-1} & t_{2n-2}& ... & t_{n}         
+	t_{2n-1} & t_{2n-2}& ... & t_{1}         
 \end{bmatrix}
 \qquad and \qquad
 C = \begin{bmatrix}
-t_{n} & t_{n-1} & ...& t_{1}           \\[0.3em]
-t_{1} & t_{n} & ... & t_{2} \\[0.3em]
+t_{1} & t_{2} & ...& t_{n}           \\[0.3em]
+t_{n} & t_{1} & ... & t_{n-1} \\[0.3em]
 \ddots &\ddots & \ddots &      \\[0.3em]
-t_{n-1} & t_{n-2}& ... & t_{n}        
+t_{2} & t_{3}& ... & t_{1}        
 \end{bmatrix} 
 $$
 \end{frame}
@@ -41,9 +41,9 @@ $$
 \begin{frame}[t]
 \frametitle{Structured random matrices}
 \framesubtitle{~~}  %% needed for proper positioning of the logo ...
-	Any matrix can be diagonalized by a Fourier transform, i.e. obeying
+	Any Circulant matrix can be diagonalized by a Fourier transform, i.e. obeying
 	$$ C=\frac{1}{\sqrt{n}} F^* \Sigma F $$ with $F$ as the discrete Fourier matrix
-	$F_{t,w}=e^{-i2\pi(t-1)(w-1)/n}, \qquad 1 \le t,w \le n$
+	$F_{t,w}=e^{-i\; 2\pi(t-1)(w-1)/n}, \qquad 1 \le t,w \le n$
 $$
 \Sigma = \begin{bmatrix}
 	\sigma_{1} & 0 & ...& 0           \\[0.3em]
@@ -75,6 +75,61 @@ a diagonal matrix whose entries are unit magnitude complex numbers with random p
     
 
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{Structured random matrices}
+	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+\left
+$$
+T_{n} = \left[ \: 
+% \: serves as a spacer between the left-hand bracket of 
+% the matrix and the left-hand side of the inner frame
+\begin{array}{*{13}{c}}
+\cline{1-4}
+\multicolumn{1}{|c}{t_{1}} & t_{2} & ...& \multicolumn{1}{c|}{t_{n}}           \\[0.3em]
+\cline{1-4}
+	t_{n+1} & t_{1} & ... & t_{n-1} \\[0.3em]
+	\ddots &\ddots & \ddots &    \\[0.3em]
+	t_{2n-1} & t_{2n-2}& ... & t_{1}      \\[0.3em]    
+	\end{array}
+\right]
+$$
+$$
+T_{n} = \left[ \:
+\begin{array}{*{13}{c}}
+
+t_{1} & t_{2} & ...& t_{n}        \\[0.3em]
+\cline{1-1}
+\multicolumn{1}{|c|}{t_{n+1}} & t_{1} & ... & t_{n-1} \\[0.3em]
+\multicolumn{1}{|c|}{\ddots} &\ddots & \ddots &    \\[0.3em]
+\multicolumn{1}{|c|}{t_{2n-1}} & t_{2n-2}& ... & t_{1}      \\[0.3em]    
+\cline{1-1}
+\end{array}
+\right]
+$$
+\\
+$$
+C_{2n} =\begin{bmatrix}
+	t_{1} & t_{2} & ...& t_{n} & 0 & t_{2n-1} & ...&  t_{n+1}           \\[0.3em]
+    t_{n+1} & t_{1}  & ... & t_{n-1} & ... & 0 & ...    \\[0.3em]
+	\ddots &  & \ddots & & \ddots &  & \ddots \\[0.3em]
+
+
+	
+\end{bmatrix}
+ =\begin{bmatrix}
+	T_{n} & B_{n}            \\[0.3em]
+	B_{n} & T_{n}   \\[0.3em]
+\end{bmatrix}
+$$
+	
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Frame
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,7 +152,7 @@ a diagonal matrix whose entries are unit magnitude complex numbers with random p
 	\frametitle{Structured random matrices}
 	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
 	An equivalent definition of the Hadamard matrices is given by 
-	$$ H_{n}H_{n}^T=nI_{n} $$
+	$$ H_{n} H_{n}^T = n  I_{n} $$
 	where $I_{n}$ is the $n \times n$ identity matrix.
 $$
 	H_{1} = \begin{bmatrix}
@@ -123,19 +178,4 @@ H_{2^{n-1}}& -H_{2^{n-1}}
 \end{bmatrix}	
 $$
 \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Frame
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[t]
-	\frametitle{Result on structured random matrices}
-	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
-	
-	Computational time of fully random matrix vs structured random
-	
-\end{frame}
-
-
-
-
-        
+       
