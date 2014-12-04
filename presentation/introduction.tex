@@ -101,13 +101,13 @@ T_{n} = \left[ \:
 $$
 $$
 T_{n} = \left[ \:
-\begin{array}{*{13}{c}}
+\begin{array}{*{4}{c}}
 
 t_{1} & t_{2} & ...& t_{n}        \\[0.3em]
 \cline{1-1}
 \multicolumn{1}{|c|}{t_{n+1}} & t_{1} & ... & t_{n-1} \\[0.3em]
 \multicolumn{1}{|c|}{\ddots} &\ddots & \ddots &    \\[0.3em]
-\multicolumn{1}{|c|}{t_{2n-1}} & t_{2n-2}& ... & t_{1}      \\[0.3em]    
+\multicolumn{1}{|c|}{t_{2n-1}} & t_{2n-2}& ... & t_{1}          
 \cline{1-1}
 \end{array}
 \right]
@@ -117,14 +117,15 @@ $$
 C_{2n} =\begin{bmatrix}
 	t_{1} & t_{2} & ...& t_{n} & 0 & t_{2n-1} & ...&  t_{n+1}           \\[0.3em]
     t_{n+1} & t_{1}  & ... & t_{n-1} & ... & 0 & ...    \\[0.3em]
-	\ddots &  & \ddots & & \ddots &  & \ddots \\[0.3em]
+	\ddots &  & \ddots & & \ddots &  & \ddots 
 
 
 	
 \end{bmatrix}
- =\begin{bmatrix}
+ =
+ \begin{bmatrix}
 	T_{n} & B_{n}            \\[0.3em]
-	B_{n} & T_{n}   \\[0.3em]
+	B_{n} & T_{n}   
 \end{bmatrix}
 $$
 	
