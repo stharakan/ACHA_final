@@ -3,55 +3,54 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[t]
-\frametitle{Introduction}
-\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+	\frametitle{Introduction}
+	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
 
-The Basis pursuit problem 
-\begin{equation}
-min  \;||x||_{l_1} \qquad   subject \; to \; \Phi \Psi x=y
-\end{equation}
+	The Basis pursuit problem 
+	\begin{equation}
+		min  \;||x||_{l_1} \qquad   subject \; to \; \Phi \Psi x=y
+	\end{equation}
 
-\small
-With $\Psi$ as an $n \times n$ orthogonal representation matrix, i.e. $t_{1}$ is $S$-sparse in $\Psi$ if we can decompose $t_0$ as $t_0=\Psi x_0 $ , where $x_0$ has at most $S$ non-zero components.
-\\
-\normalfont
-\textbf{Toeplitz} and \textbf{Circulant} matrices have the forms, respectively,
-\\
-
-
-$$
-T = \begin{bmatrix}
-	t_{1} & t_{2} & ...& t_{n}           \\[0.3em]
-	t_{n+1} & t_{1} & ... & t_{n-1} \\[0.3em]
-	\ddots &\ddots & \ddots &    \\[0.3em]
-	t_{2n-1} & t_{2n-2}& ... & t_{1}         
-\end{bmatrix}
-\qquad and \qquad
-C = \begin{bmatrix}
-t_{1} & t_{2} & ...& t_{n}           \\[0.3em]
-t_{n} & t_{1} & ... & t_{n-1} \\[0.3em]
-\ddots &\ddots & \ddots &      \\[0.3em]
-t_{2} & t_{3}& ... & t_{1}        
-\end{bmatrix} 
-$$
+	\small
+	Where $\Psi$ is an $n \times n$ orthogonal matrix corresponding to the basis in which our signal $z = \Psi x$ is $S$-sparse. $\Phi$ is our sensing matrix. 
+	\\
+	\normalfont
+	\textbf{Toeplitz} and \textbf{Circulant} matrices have the forms, respectively,
+	\\
+	
+	$$
+	T = \begin{bmatrix}
+		t_{1}    & t_{2}    & ...    & t_{n}   \\[0.3em]
+		t_{n+1}  & t_{1}    & ...    & t_{n-1} \\[0.3em]
+		\ddots   & \ddots   & \ddots &         \\[0.3em]
+		t_{2n-1} & t_{2n-2} & ...    & t_{1}         
+	\end{bmatrix}
+	\qquad and \qquad
+	C = \begin{bmatrix}
+		t_{1}  & t_{2}  & ...    & t_{n}   \\[0.3em]
+		t_{n}  & t_{1}  & ...    & t_{n-1} \\[0.3em]
+		\ddots & \ddots & \ddots &         \\[0.3em]
+		t_{2}  & t_{3}  & ...    & t_{1}        
+	\end{bmatrix} 
+	$$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Frame
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[t]
-\frametitle{Structured random matrices}
-\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+	\frametitle{Structured random matrices}
+	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
 	Any Circulant matrix can be diagonalized by a Fourier transform, i.e. obeying
 	$$ C=\frac{1}{\sqrt{n}} F^* \Sigma F $$ with $F$ as the discrete Fourier matrix
 	$F_{t,w}=e^{-i\; 2\pi(t-1)(w-1)/n}, \qquad 1 \le t,w \le n$
-$$
-\Sigma = \begin{bmatrix}
-	\sigma_{1} & 0 & ...& 0           \\[0.3em]
-	0 & \sigma_{2} & ... & 0 \\[0.3em]
-	\ddots &\ddots & \ddots &      \\[0.3em]
-	0 & 0 & ... & \sigma_{n}        
-\end{bmatrix} $$
-a diagonal matrix whose entries are unit magnitude complex numbers with random phases.
+	$$
+	\Sigma = \begin{bmatrix}
+		\sigma_{1} & 0 & ...& 0           \\[0.3em]
+		0 & \sigma_{2} & ... & 0 \\[0.3em]
+		\ddots &\ddots & \ddots &      \\[0.3em]
+		0 & 0 & ... & \sigma_{n}        
+	\end{bmatrix} $$
+	a diagonal matrix whose entries are unit magnitude complex numbers with random phases.
 \end{frame}
 
 
@@ -62,18 +61,21 @@ a diagonal matrix whose entries are unit magnitude complex numbers with random p
 	\frametitle{Structured random matrices}
 	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
 	We generate $\sigma_{w}$ as follows:
-    \\[1em]
-    
-    $w=1\qquad \qquad \qquad : \; \sigma_{1} \sim \pm$ 1 with equal probability,
-    \\[1em]
-    $2 \le w < n/2+1 \; \; : \; \sigma_{w}=e^{i\theta w}, where \; {\theta}_{w} \sim Uniform(0,2\pi) $
-    \\[1em]
-    $w=n/2+1 \qquad \; \; \, : \; \sigma_{n/2+1} \sim \pm 1 $ with equal probability 
-    \\[1em]
-    
-    $n/2+2 \le w \le n \; \; : \; \sigma_{w}=\sigma^{*}_{n-w+2}$, conjugate of  $\sigma_{n-w+2}$.
-    
+	\\[1em]
 
+	$w=1\qquad \qquad \qquad : \; \sigma_{1} \sim \pm$ 1 with equal probability,
+	\\[1em]
+	$2 \le w < n/2+1 \; \; : \; \sigma_{w}=e^{i\theta w}, where \; {\theta}_{w} \sim Uniform(0,2\pi) $
+	\\[1em]
+	$w=n/2+1 \qquad \; \; \, : \; \sigma_{n/2+1} \sim \pm 1 $ with equal probability 
+	\\[1em]
+
+	$n/2+2 \le w \le n \; \; : \; \sigma_{w}=\sigma^{*}_{n-w+2}$, conjugate of  $\sigma_{n-w+2}$.
+	
+	$$
+	$$
+	Generating the diagonal in this way ensures the resulting circulant matrix is real-valued due 
+	to conjugate symmetry.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -83,43 +85,44 @@ a diagonal matrix whose entries are unit magnitude complex numbers with random p
 \begin{frame}[t]
 	\frametitle{Structured random matrices}
 	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
-$$
-T_{n} = \left[ \: 
-\begin{array}{*{4}{c}}
-\cline{1-4}
-\multicolumn{1}{|c}{t_{1}} & t_{2} & ...& \multicolumn{1}{c|}{t_{n}}           \\[0.3em]
-\cline{1-4}
-	t_{n+1} & t_{1} & ... & t_{n-1} \\[0.3em]
-	\ddots &\ddots & \ddots &    \\[0.3em]
-	t_{2n-1} & t_{2n-2} & ... & t_{1}      \\[0.3em]    
-	\end{array}
-\right]
-=
- \left[ \:
-\begin{array}{*{4}{c}}
-t_{1} & t_{2} & ...& t_{n}        \\[0.3em]
-\cline{1-1}
-\multicolumn{1}{|c|}{t_{n+1}} & t_{1} & ... & t_{n-1} \\[0.3em]
-\multicolumn{1}{|c|}{\ddots} & \ddots & \ddots &    \\[0.3em]
-\multicolumn{1}{|c|}{t_{2n-1}} & t_{2n-2} & ... & t_{1}          \\[0.3em]
-\cline{1-1}
-\end{array}
-\right]
-$$
-\\
-$$
-C_{2n} =\begin{bmatrix}
-	t_{1} & t_{2} & ...& t_{n} & 0 & t_{2n-1} & ...&  t_{n+1}           \\[0.3em]
-    t_{n+1} & t_{1}  & ... & t_{n-1} & ... & 0 & ...&    \\[0.3em]
-	\ddots &  & \ddots & & \ddots &  & &\ddots 
-\end{bmatrix}
- =
- \begin{bmatrix}
-	T_{n} & B_{n}            \\[0.3em]
-	B_{n} & T_{n}   
-\end{bmatrix}
-$$
-	
+	$$
+	T_{n} = \left[ \: 
+		\begin{array}{*{4}{c}}
+			\cline{1-4}
+			\multicolumn{1}{|c}{t_{1}} & t_{2} & ...& \multicolumn{1}{c|}{t_{n}}           \\[0.3em]
+			\cline{1-4}
+			t_{n+1} & t_{1} & ... & t_{n-1} \\[0.3em]
+			\ddots &\ddots & \ddots &    \\[0.3em]
+			t_{2n-1} & t_{2n-2} & ... & t_{1}      \\[0.3em]    
+		\end{array}
+	\right]
+	=
+	\left[ \:
+		\begin{array}{*{4}{c}}
+			t_{1} & t_{2} & ...& t_{n}        \\[0.3em]
+			\cline{1-1}
+			\multicolumn{1}{|c|}{t_{n+1}} & t_{1} & ... & t_{n-1} \\[0.3em]
+			\multicolumn{1}{|c|}{\ddots} & \ddots & \ddots &    \\[0.3em]
+			\multicolumn{1}{|c|}{t_{2n-1}} & t_{2n-2} & ... & t_{1}          \\[0.3em]
+			\cline{1-1}
+		\end{array}
+	\right]
+	$$
+	\\
+	$$
+	C_{2n} =\begin{bmatrix}
+		t_{1}   & t_{2} & ...    & t_{n}  & 0   & t_{2n-1} & ... &  t_{n+1}   \\[0.3em]
+		t_{n+1} & t_{1} & ...    & t_{n-1}& ... & 0  & ... &          \\[0.3em]
+		\ddots  &       & \ddots &        & \ddots & & &\ddots    \\[0.3em]
+		\cdots  &       & \cdots &       & \cdots & & & \cdots
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		T_{n} & B_{n}            \\[0.3em]
+		B_{n} & T_{n}   
+	\end{bmatrix}
+	$$
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -128,13 +131,13 @@ $$
 \begin{frame}[t]
 	\frametitle{Structured random matrices}
 	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
-	 \textbf{Hadamard} matrix is a square matrix whose entries are either $+1$ or $−1$ and whose rows are mutually orthogonal.
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.7\linewidth]{HadamardMatrices_800}
-\caption{}
-\label{fig:HadamardMatrices_800}
-\end{figure}
+	\textbf{Hadamard} matrix is a square matrix whose entries are either $+1$ or $−1$ and whose rows are mutually orthogonal.
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\linewidth]{HadamardMatrices_800}
+		\caption{}
+		\label{fig:HadamardMatrices_800}
+	\end{figure}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -146,28 +149,28 @@ $$
 	An equivalent definition of the Hadamard matrices is given by 
 	$$ H_{n} H_{n}^T = n  I_{n} $$
 	where $I_{n}$ is the $n \times n$ identity matrix.
-$$
+	$$
 	H_{1} = \begin{bmatrix}
 		1
-		\end{bmatrix}
-\qquad
-    H_{2} = \begin{bmatrix}
- 		1 & 1           \\[0.3em]
+	\end{bmatrix}
+	\qquad
+	H_{2} = \begin{bmatrix}
+		1 & 1           \\[0.3em]
 		1& -1
-			\end{bmatrix}	
-\qquad
+	\end{bmatrix}	
+	\qquad
 	H_{4} = \begin{bmatrix}
 		H_{2} & H_{2}           \\[0.3em]
 		H_{2}& -H_{2}
 	\end{bmatrix}	
-$$
-$$
-\centering
-\qquad
-H_{2^{n}} = \begin{bmatrix}
-H_{2^{n-1}} & H_{2^{n-1}}           \\[0.3em]
-H_{2^{n-1}}& -H_{2^{n-1}}            
-\end{bmatrix}	
-$$
+	$$
+	$$
+	\centering
+	\qquad
+	H_{2^{n}} = \begin{bmatrix}
+		H_{2^{n-1}} & H_{2^{n-1}}           \\[0.3em]
+		H_{2^{n-1}}& -H_{2^{n-1}}            
+	\end{bmatrix}	
+	$$
 \end{frame}
-       
+
