@@ -19,6 +19,7 @@ Why is incoherence important?
 	\item More incoherence $\implies$ more chance at ``catching'' sparsity
 	\item Less incoherence $\implies$ more measurements needed
 	\item Plays an important role in recovery proofs due to Candes and Romberg (2007)
+	\item We did an experiment to demonstrate the importance of incoherence
 \end{itemize}
 \end{frame}
 
@@ -28,7 +29,6 @@ Why is incoherence important?
 \begin{frame}[t]
 \frametitle{Incoherence}
 \framesubtitle{~~}  %% needed for proper positioning of the logo ...
-Quick look at the importance of incoherence
 
 \begin{figure}[h!]
   \centering
@@ -71,15 +71,15 @@ Our random basis is incoherent to \textbf{any} basis with a high probability!
 
 From Do et al (2012), we have the result:\\
 
-\textbf{Theorem III.3:} \textit{Given $F$ and $R$ as defined above, let $A=FR$. Then if the magnitude of the entries of $F$ are bounded by $\mathcal{O}(\frac{1}{\sqrt{B}})$, we have that}
+\textbf{Theorem III.3:} \textit{Given $F$ and $R$ as defined above, let $A=FR$, and $\Phi$ a fixed orthogonal matrix. Then if the magnitude of the entries of $F$ are bounded by $\mathcal{O}(\frac{1}{\sqrt{B}})$, we have that}
 \begin{equation}
-	\mu \leq \mathcal{O}\left(\sqrt{\frac{\log{\frac{N}{\delta}}}{B}}\right)
+	\mu(A,\Phi) \leq \mathcal{O}\left(\sqrt{\frac{\log{\frac{N}{\delta}}}{B}}\right)
 \end{equation}
 Additionally, if the maximal entry of $\Phi$ (the sparsity domain) is $\mathcal{O}\left(\frac{1}{\sqrt{N}}\right)$,
 we can change the bound to 
 \begin{equation}
 	\label{incoherence_bd2}
-	\mu \leq \mathcal{O} \left( \sqrt{\frac{\log{\frac{N}{\delta}}}{N}}\right)
+	\mu(A,\Phi) \leq \mathcal{O} \left( \sqrt{\frac{\log{\frac{N}{\delta}}}{N}}\right)
 \end{equation}
 
 \end{frame}
