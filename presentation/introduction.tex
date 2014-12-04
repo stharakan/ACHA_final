@@ -11,8 +11,10 @@ The Basis pursuit problem
 min  \;||x||_{l_1} \qquad   subject \; to \; \Phi \Psi x=y
 \end{equation}
 
-\subsection*{Structured random matrices}
-Toeplitz and Circulant matrices have the forms, respectively,
+\small
+With $\Psi$ as an $n \times n$ orthogonal representation matrix(the columns of $\Psi$ are the basis vectors), i.e. $t_{1}$ is $S$-sparse in $\Psi$ if we can decompose 
+\normalfont
+\textbf{Toeplitz} and \textbf{Circulant} matrices have the forms, respectively,
 \\
 
 
@@ -36,8 +38,49 @@ $$
 %% Frame
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[t]
+\frametitle{Structured random matrices}
+\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+	Any matrix can be diagonalized by a Fourier transform, i.e. obeying
+	$$ C=\frac{1}{\sqrt{n}} F^* \Sigma F $$ with $F$ as the discrete Fourier matrix
+	$F_{t,w}=e^{-i2\pi(t-1)(w-1)/n}, \qquad 1 \le t,w \le n$
+$$
+\Sigma = \begin{bmatrix}
+	\sigma_{1} & 0 & ...& 0           \\[0.3em]
+	0 & \sigma_{2} & ... & 0 \\[0.3em]
+	\ddots &\ddots & \ddots &      \\[0.3em]
+	0 & 0 & ... & \sigma_{n}        
+\end{bmatrix} $$
+a diagonal matrix whose entries are unit magnitude complex numbers with random phases.
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
 	\frametitle{Structured random matrices}
-	 Hadamard matrix is a square matrix whose entries are either $+1$ or $−1$ and whose rows are mutually orthogonal.
+	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+	We generate $\sigma_{w}$ as follows:
+    \\[1em]
+    
+    $w=1\qquad \qquad \qquad : \; \sigma_{1} \sim \pm$ 1 with equal probability,
+    \\[1em]
+    $2 \le w < n/2+1 \; \; : \; \sigma_{w}=e^{i\theta w}, where \; {\theta}_{w} \sim Uniform(0,2\pi) $
+    \\[1em]
+    $w=n/2+1 \qquad \; \; \, : \; \sigma_{n/2+1} \sim \pm 1 $ with equal probability 
+    \\[1em]
+    
+    $n/2+2 \le w \le n \; \; : \; \sigma_{w}=\sigma^{*}_{n-w+2}$, conjugate of  $\sigma_{n-w+2}$.
+    
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{Structured random matrices}
+	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+	 \textbf{Hadamard} matrix is a square matrix whose entries are either $+1$ or $−1$ and whose rows are mutually orthogonal.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{HadamardMatrices_800}
@@ -51,34 +94,43 @@ $$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[t]
 	\frametitle{Structured random matrices}
+	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
 	An equivalent definition of the Hadamard matrices is given by 
-	$$H_{n}H_{n}^T=nI_{n} $$
+	$$ H_{n}H_{n}^T=nI_{n} $$
 	where $I_{n}$ is the $n \times n$ identity matrix.
 $$
 	H_{1} = \begin{bmatrix}
 		1
 		\end{bmatrix}
 \qquad
-H_{2} = \begin{bmatrix}
-1 & 1           \\[0.3em]
-1& -1\\[0.3em]
-\end{bmatrix}	
+    H_{2} = \begin{bmatrix}
+ 		1 & 1           \\[0.3em]
+		1& -1
+			\end{bmatrix}	
 \qquad
-H_{4} = \begin{bmatrix}
-H_{2} & H_{2}           \\[0.3em]
-H_{2}& -H_{2}\\[0.3em]
-\end{bmatrix}	
-\\
+	H_{4} = \begin{bmatrix}
+		H_{2} & H_{2}           \\[0.3em]
+		H_{2}& -H_{2}
+	\end{bmatrix}	
+$$
+$$
 \centering
 \qquad
-H_{2^n} = \begin{bmatrix}
+H_{2^{n}} = \begin{bmatrix}
 H_{2^{n-1}} & H_{2^{n-1}}           \\[0.3em]
-H_{2^{n-1}}& -H_{2^{n-1}}            \\[0.3em]
+H_{2^{n-1}}& -H_{2^{n-1}}            
 \end{bmatrix}	
-
-
 $$
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{Result on structured random matrices}
+	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
 	
+	Computational time of fully random matrix vs structured random
 	
 \end{frame}
 
