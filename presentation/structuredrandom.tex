@@ -1,0 +1,50 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[t]
+	\frametitle{Structured Random Matrices and the DFR Framework}
+	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+	Do et al. (2012) introduced the structured random matrix framework for compressed sensing,
+	which is a way of generating sensing matrices $\Phi$ that are incoherent with any basis $\Psi$. Let 
+
+	\centering
+	$	\Phi = \sqrt{\frac{N}{M}}DFR$
+
+	\begin{itemize}
+	\item $D\in \mathbb{R}^{M\times N}$ (output randomizer) is a subsampling matrix/operator which does one of the following:
+		\begin{itemize}
+		\item Randomly selects a subset of the entries of a vector (and possibly permutes it) We call this subsampling.
+		\item Randomly pre-modulated summation operator as introduced in Romberg, 2008.
+		\end{itemize}
+	\item $F\in\mathbb{R}^{N\times N}$ is an orthonormal matrix. We usually use a fast transform like the FFT or 
+		fast Walsh-Hadamard transform for this.
+	\item $R\in\mathbb{R}^{N\times N}$ (input randomizer) is one of the following:
+		\begin{itemize}
+			\item A uniform random permutation matrix
+			\item A diagonal matrix whose entries are Bernoulli random variables with probability $1/2$
+		\end{itemize}
+	\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{Randomly pre-modulated summation (RPMS)}
+	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+	
+	Within the DFR framework one, of the restruction or subsampling operators is the
+	randomly pre-modulated summation operator. It works as follows:
+
+	Given two vectors $x$ and $\epsilon$, we compute
+	\begin{equation}
+		y_k = \sqrt{\frac{M}{N}}\sum_{t\in B_k}\epsilon_t x_t
+	\end{equation}
+	where
+	$B_k = \{(k-1)N/M + 1, \ldots, kN/M  \}, k = 1,\ldots,m$
+
+\end{frame}
+
