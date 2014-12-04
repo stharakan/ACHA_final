@@ -83,31 +83,25 @@ a diagonal matrix whose entries are unit magnitude complex numbers with random p
 \begin{frame}[t]
 	\frametitle{Structured random matrices}
 	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
-
-\left
 $$
 T_{n} = \left[ \: 
-% \: serves as a spacer between the left-hand bracket of 
-% the matrix and the left-hand side of the inner frame
-\begin{array}{*{13}{c}}
+\begin{array}{*{4}{c}}
 \cline{1-4}
 \multicolumn{1}{|c}{t_{1}} & t_{2} & ...& \multicolumn{1}{c|}{t_{n}}           \\[0.3em]
 \cline{1-4}
 	t_{n+1} & t_{1} & ... & t_{n-1} \\[0.3em]
 	\ddots &\ddots & \ddots &    \\[0.3em]
-	t_{2n-1} & t_{2n-2}& ... & t_{1}      \\[0.3em]    
+	t_{2n-1} & t_{2n-2} & ... & t_{1}      \\[0.3em]    
 	\end{array}
 \right]
-$$
-$$
-T_{n} = \left[ \:
+=
+ \left[ \:
 \begin{array}{*{4}{c}}
-
 t_{1} & t_{2} & ...& t_{n}        \\[0.3em]
 \cline{1-1}
 \multicolumn{1}{|c|}{t_{n+1}} & t_{1} & ... & t_{n-1} \\[0.3em]
-\multicolumn{1}{|c|}{\ddots} &\ddots & \ddots &    \\[0.3em]
-\multicolumn{1}{|c|}{t_{2n-1}} & t_{2n-2}& ... & t_{1}          
+\multicolumn{1}{|c|}{\ddots} & \ddots & \ddots &    \\[0.3em]
+\multicolumn{1}{|c|}{t_{2n-1}} & t_{2n-2} & ... & t_{1}          \\[0.3em]
 \cline{1-1}
 \end{array}
 \right]
@@ -116,11 +110,8 @@ $$
 $$
 C_{2n} =\begin{bmatrix}
 	t_{1} & t_{2} & ...& t_{n} & 0 & t_{2n-1} & ...&  t_{n+1}           \\[0.3em]
-    t_{n+1} & t_{1}  & ... & t_{n-1} & ... & 0 & ...    \\[0.3em]
-	\ddots &  & \ddots & & \ddots &  & \ddots 
-
-
-	
+    t_{n+1} & t_{1}  & ... & t_{n-1} & ... & 0 & ...&    \\[0.3em]
+	\ddots &  & \ddots & & \ddots &  & &\ddots 
 \end{bmatrix}
  =
  \begin{bmatrix}
