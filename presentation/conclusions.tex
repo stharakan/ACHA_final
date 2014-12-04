@@ -1,0 +1,50 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{Our contributions}
+	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+	Our work can be summarized as follows
+	\begin{itemize}
+		\item We have combined the structures Do et al. (2012) and the subsampling operator 
+			of Romberg (2008) to propose a new type of structured random matrix which offers 
+			comprable practical performance
+		\item We implemented a randomized Toeplitz matrix that built on the random structure
+			used by Romberg (2008) for circulant matrices by expanding the system to size $2N$.
+	\end{itemize}
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{Future work}
+	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+
+	Looking ahead, we have the following questions for areas of future research
+	\begin{itemize}
+		\item We would like to see empirically how sparsity affects each of the methods we 
+			have looked at to compare with the theory (comparing to the $S\log{N}$ bound. In 
+			Yin et al (2010), they had some results, but not for most of the matrices we 
+			compared here. 
+		\item We did most minimizations in the $TV$ norm, but we would like to see an 
+			implementation of an ADMM (alternating direction method of multipliers) on an
+			objective function containing both the $L_1$ and the $TV$ norms. Yin et al (2010)
+			implemented this, but not with the randomizations discussed here. 
+	\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{Thank you}
+	\framesubtitle{~~}  %% needed for proper positioning of the logo ...
+	Questions?
+\end{frame}
+
