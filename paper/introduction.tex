@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 Compressed sensing (CS) has one of the topics that attracted a lot of interests over the past years. Suppose $z$ is a length-$N$ signal. It is said to be $S$-sparse(or compressible) if $z$ can be well approximated using only $S << N$ coefficients under some linear transformation
 $ z=\Psi x $
 where $\Psi$ is the sparsifying basis and $x$ is transform coefficient vector that has at most $S$(significant) nonzero entries.
@@ -36,6 +36,8 @@ $$
 	$$ C=\frac{1}{\sqrt{n}} F^* \Sigma F $$ with $F$ as the discrete Fourier matrix
 	$F_{t,w}=e^{-i\; 2\pi(t-1)(w-1)/n}, \qquad 1 \le t,w \le n$
 	$$
+	
+	
 	\Sigma = \begin{bmatrix}
 	\sigma_{1} & 0 & ...& 0           \\[0.3em]
 	0 & \sigma_{2} & ... & 0 \\[0.3em]
@@ -55,11 +57,13 @@ $$
 	\\[1em]
 	
 	$n/2+2 \le w \le n \; \; : \; \sigma_{w}=\sigma^{*}_{n-w+2}$, conjugate of  $\sigma_{n-w+2}$.
-	
+	\\
+	The construction ensures that $C$ will be orthogonal
+	$$ C^*C=\dfrac{{1}}{n} F^* \Sigma F F^* \Sigma F = nI $$
+	since $FF^*=F^*F=nI$ and $\Sigma^* \Sigma = I$
 	$$
 	$$
-	Generating the diagonal in this way ensures the resulting circulant matrix is real-valued due 
-	to conjugate symmetry.
+	Generating the diagonal in this way ensures the resulting circulant matrix is real-valued due to conjugate symmetry.
 	$$
 	T_{n} = \left[ \: 
 	\begin{array}{*{4}{c}}
@@ -101,10 +105,11 @@ $$
 	\textbf{Hadamard} matrix is a square matrix whose entries are either $+1$ or $-1$ and whose rows are mutually orthogonal.
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.7\linewidth]{HadamardMatrices_800}
+\includegraphics[width=0.7\linewidth]{image/HadamardMatrices_800}
 \caption{}
 \label{fig:HadamardMatrices_800}
 \end{figure}
+
 
 
 	An equivalent definition of the Hadamard matrices is given by 
