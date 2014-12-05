@@ -26,36 +26,33 @@ data to reconstruct the image. Figure \ref{fig:shepplogan} shows an example of
 this image and its reconstruction.
 
 
-\begin{figure}[h!] \centering \caption{Modified Shepp-Logan phantom
-	reconstructed using a circulant matrix with RPMS restriction.}
-	\includegraphics[width=0.6\textwidth, trim= 0 40 0 40,
-	clip=true]{figs/rpms.pdf} \label{fig:shepplogan} \end{figure}
+\begin{figure}[h!]
+	\centering
+	\caption{Modified Shepp-Logan phantom reconstructed using a circulant matrix with RPMS restriction.}
+	\includegraphics[width=0.6\textwidth, trim= 0 40 0 40, clip=true]{figs/rpms.pdf}
+	\label{fig:shepplogan}
+\end{figure}
 
 
-\begin{table}[h] \begin{tabular}{lll|lllll} \textbf{Matrix Type}       &
-		\textbf{Input Randomizer} & \textbf{Output Randomizer} & \textbf{Error} &
-		\textbf{Time} & \\ \hline \multirow{2}{*}{Circulant} & \multirow{2}{*}{N/A}
-		& Sub                        & 0.0156         & 4.97s         & \\ &
-		& RPMS                       & 0.0159         & 7.80s         & \\ \hline
-
-
-	\multirow{2}{*}{Toeplitz}  & \multirow{2}{*}{N/A}      & Sub
-	& 0.0193         & 25.9s         & \\ &                           & RPMS
-	& 0.0170         & 16.9s         & \\ \hline
-
-	\multirow{4}{*}{Fourier}   & \multirow{2}{*}{Local}    & Sub
-	& 0.0183         & 7.89s         & \\ &                           & RPMS
-	& 0.0517         & 14.0s         & \\ & \multirow{2}{*}{Global}   & Sub
-	& 0.0166         & 4.98s         & \\ &                           & RPMS
-	& 0.0529         & 14.1s         & \\ \hline
-
-	\multirow{4}{*}{Hadamard}  & \multirow{2}{*}{Local}    & Sub
-	& 0.0167         & 552s          & \\ &                           & RPMS
-	& 0.0153         & 752s          & \\ & \multirow{2}{*}{Global}   & Sub
-	& 0.0157         & 544s          & \\ &                           & RPMS
-	& 0.0137         & 782s          & \\ \end{tabular} \caption{Table of
-reconstruction error $\varepsilon$ and timing results for all it the structured
-sensing matrices described previously.} \label{tab:errors} \end{table}
+\begin{table}[h] 
+	\begin{tabular}{lll|lllll} 
+		\textbf{Matrix Type}       & \textbf{Input Randomizer} & \textbf{Output Randomizer} & \textbf{Error} & \textbf{Time}  & \\ \hline
+		\multirow{2}{*}{Circulant} & \multirow{2}{*}{N/A}      & Sub                        & 0.0156         & 4.97s          & \\
+															 &											     & RPMS                       & 0.0159         & 7.80s          & \\ \hline
+		\multirow{2}{*}{Toeplitz}  & \multirow{2}{*}{N/A}      & Sub                        & 0.0193         & 25.9s          & \\ 
+															 &												   & RPMS                       & 0.0170         & 16.9s          & \\ \hline
+		\multirow{4}{*}{Fourier}   & \multirow{2}{*}{Local}    & Sub                        & 0.0183         & 7.89s          & \\ 
+															 &													 & RPMS                       & 0.0517         & 14.0s          & \\             
+															 &	\multirow{2}{*}{Global}  & Sub                        & 0.0166         & 4.98s          & \\ 
+															 &													 & RPMS                       & 0.0529         & 14.1s          & \\ \hline
+		\multirow{4}{*}{Hadamard}  & \multirow{2}{*}{Local}    & Sub                        & 0.0167         & 552s           & \\
+															 &						 							 & RPMS                       & 0.0153         & 752s           & \\
+															 & \multirow{2}{*}{Global}   & Sub                        & 0.0157         & 544s           & \\
+															 &													 & RPMS                       & 0.0137         & 782s           & \\
+	\end{tabular} 
+\caption{Table of reconstruction error $\varepsilon$ and timing results for all it the structured sensing matrices described previously.}
+\label{tab:errors}
+\end{table}
 
 Table \ref{tab:errors} summarizes the results of our first experiment comparing
 the solution accuracy of the various sensing matrices and input and output
@@ -70,10 +67,13 @@ converge. We are not convinced that the RPMS method is working in that case,
 but that it is functioning correctly for circulant, Toeplitz and Hadamard
 sensing matrices (where we are unaware of it having ever been used before). 
 
-\begin{table}[h] \begin{tabular}{l|lllllll} \textbf{Matrix Type} & Gaussian &
-		Circulant & Toeplitz & Fourier & Hadamard \\ \hline \textbf{Time}        &
-		12.2s    & 1.65s     & 4.24s    & 1.50s   & 102s*    \\ \end{tabular}
-	\label{tab:times} \caption{ In this table we see how the time to compute the
+\begin{table}[h]
+	\begin{tabular}{l|lllllll} 
+		\textbf{Matrix Type} & Gaussian & Circulant & Toeplitz & Fourier & Hadamard \\ \hline
+		\textbf{Time}        & 12.2s    & 1.65s     & 4.24s    & 1.50s   & 102s*    \\ 
+	\end{tabular}
+	\label{tab:times}
+	\caption{ In this table we see how the time to compute the
 		solution for a smaller problem using the random structured sensing
 		operators compares with the time to compute the solution using a completely
 		random matrix with Gaussian i.i.d. entries. *The fast Walsh-Hadamard
