@@ -1,0 +1,7 @@
+There are various parts to this project which we may not be able to address in the limited time span:
+\begin{itemize}
+\item Solvers for SVM implement various heuristics such as shrinking and caching of kernel values which we will not be able to implement for this project, but which may be crucial for performance.
+\item Performance on multicore machines can depend on whether the required data is available in the closest cache or in the same socket. This may require some engineering considerations to ensure that components of $\al$ are allocated to processors where they have data easily available.
+\item The extension of our project to the general SVM case for the SMO algorithm is expected to be straightforward but is beyond the scope of this project.
+\item While we have presented an algorithm with low serialization error, it is unclear how this error affects gradient descent procedure. Since gradient descent is self-correcting, we expect the algorithm to perform well in practice but the theoretical analysis is an important open question.
+\end{itemize}

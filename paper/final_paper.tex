@@ -1,0 +1,41 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{amsthm}
+\usepackage[parfill]{parskip}
+\usepackage[round]{natbib}
+
+\newcommand{\al}{\ensuremath{\alpha}}
+\newtheorem{thm}{Theorem}
+\newcommand{\bs}{\ensuremath{\boldsymbol}}
+\DeclareMathOperator*{\argmin}{arg\,min\;}
+\DeclareMathOperator*{\diag}{diag}
+\DeclareMathOperator*{\st}{subject\,to\;}
+
+\title{Harmonic Analysis Final Paper \\ Incoherence and Structured Random Matrices}
+\author{Keith Kelly, Yerlan Amanbek, and Sameer Tharakan}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+\input{introduction}
+
+\subsection{Relation to Previous Work}
+\input{relatedwork}
+
+\section{Experiments}
+\input{experiments}
+
+\section{Future Work}
+\input{future-work}
+
+\bibliographystyle{plainnat}
+\nocite{*}
+\bibliography{references}
+
+\end{document}

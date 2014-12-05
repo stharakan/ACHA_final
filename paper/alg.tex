@@ -1,0 +1,15 @@
+\begin{algorithm}
+	\caption{CD-SVM with priority scheduling}
+	\label{alg:priority}
+	\begin{algorithmic}
+		\STATE $p_i = C \;\;\forall i$ \qquad \COMMENT{This is the same as the regularization parameter of SVM}
+		\FOR{$t = 1$ to $T$}
+			\STATE $i = p.top()$ \qquad\COMMENT{Pick component with highest priority}
+			\STATE calculate $d_i$
+			\STATE update $\al_i$
+			\STATE $p(S_i) = p(S_i) + d_i K(x_i, X_{S_i})$ \qquad\COMMENT{Update neighbor set $S_i$'s priorities}
+			\STATE $p(i) = 0$ \qquad\COMMENT{Set $i$'s priority to 0}
+		\ENDFOR
+		\end{algorithmic}
+\end{algorithm}
+
