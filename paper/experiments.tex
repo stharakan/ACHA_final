@@ -1,7 +1,77 @@
-The implementation of our ideas is ongoing and we do not have any results to share at this stage. We will embed our algorithm within DC-SVM where it will be used in the concatenation step, but we will also test it independently starting from random initializations for $\al$.
+We ran two types of tests to validate that preexisiting models worked and were
+comparable to our proposed sensing matrices that combined the two types of
+models. In one, we simulate compressed sensing by creating sensing operators,
+measuring an image and then solving a TV-minimization problem to attempt to
+recover the image. We then compare the recovered image to the original to
+determine the relative error. Concretely, we compute the relative error
+$\varepsilon$ as
 
-We expect that many nodes in a graph, e.g. those from distant clusters will satisfy Theorem and thus implementing this algorithm in Galois will result in considerable speedup over the serial version, depending on the dataset and kernel parameter $\sigma$. However, an important baseline is to consider randomly chosen points for simultaneous execution, i.e. random asynchronous execution. We expect that this procedure will decrease the objective as efficiently as our approach in the initial iterations, but as we have noted in a past assignment, this objective value will plateau at a high value for the rand-async baseline, and we expect that our algorithm will continue to decrease the value as efficiently past this stage eventually achieving an optimal value close to the serial baseline.
+\begin{equation}
+	\frac{||x^{\#} - x||_2}{||x||_2} = \varepsilon
+\end{equation}
 
-The second component of our project is the priority scheduling scheme. We expect that prioritizing updates will result in considerable speedup over random scheduling, since the change in the objective is higher in each iteration. We will also compare performance with different values of $\delta$. If possible, we would like to prove a theoretical result to demonstrate that this will be the case, but this is a low priority for this project.
+and compare this error for each of the possible methods considered. In the other
+test, we were only interested in the time to compute the solution $x^{\#}$ for
+the various types of methods. In particular, we wanted to show that the
+structured random matrices are much more efficient than using a completely
+random matrix with Gaussian i.i.d. entries. 
 
-We will also compare our algorithm against the multicore version of LibSVM and against other state-of-the-art solvers which are easily available.
+
+\begin{table}[h]
+\begin{tabular}{lll|lllll}
+	\textbf{Matrix Type}       & \textbf{Input Randomizer} & \textbf{Output Randomizer} & \textbf{Error} & \textbf{Time} & \\ \hline
+	\multirow{2}{*}{Circulant} & \multirow{2}{*}{N/A}      & Sub                        & 0.0156         & 4.97s         & \\
+	                           &                           & RPMS                       & 0.0159         & 7.80s         & \\ \hline
+
+
+	\multirow{2}{*}{Toeplitz}  & \multirow{2}{*}{N/A}      & Sub                        & 0.0193         & 25.9s         & \\
+	                           &                           & RPMS                       & 0.0170         & 16.9s         & \\ \hline
+
+	\multirow{4}{*}{Fourier}   & \multirow{2}{*}{Local}    & Sub                        & 0.0183         & 7.89s         & \\
+	                           &                           & RPMS                       & 0.0517         & 14.0s         & \\
+	                           & \multirow{2}{*}{Global}   & Sub                        & 0.0166         & 4.98s         & \\
+	                           &                           & RPMS                       & 0.0529         & 14.1s         & \\ \hline
+
+	\multirow{4}{*}{Hadamard}  & \multirow{2}{*}{Local}    & Sub                        & 0.0167         & 552s          & \\
+	                           &                           & RPMS                       & 0.0153         & 752s          & \\
+	                           & \multirow{2}{*}{Global}   & Sub                        & 0.0157         & 544s          & \\
+	                           &                           & RPMS                       & 0.0137         & 782s          & \\
+\end{tabular}
+\caption{Table of reconstruction error $\varepsilon$ and timing results for all it the structured sensing matrices described previously.}
+\label{tab:errors}
+\end{table}
+
+We see in Table \ref{tab:errors} that the reconstruction errors for almost all
+of the methods are comparable. However, in the case of a Fourier transform
+sensing matrix with RPMS subsampling operator does not work well. In addation
+to not achieving a solution as good as the othertested methods, it showed poor
+convergence compared to the simpler subsampling methods in the sense that it
+took longer to converge. We are not convinced that the RPMS method is working in
+that case, but that it is functioning correctly for Circulant, Toeplitz and
+Hadamard sensing matrices (where we are unaware of it having ever been used
+before). 
+
+\begin{table}[h]
+\begin{tabular}{l|lllllll}
+	\textbf{Matrix Type} & Gaussian & Circulant & Toeplitz & Fourier & Hadamard \\ \hline
+	\textbf{Time}        & 12.2s    & 1.65s     & 4.24s    & 1.50s   & 102s*    \\
+\end{tabular}
+\label{tab:times}
+\caption{ In this table we see how the time to compute the solution for a smaller problem using the random structured sensing operators compares with the time to compute the solution using a completely random matrix with Gaussian i.i.d. entries. *The fast Walsh-Hadamard transform in \textsc{Matlab} is written in \textsc{Matlab} and is slow.}
+\end{table}
+
+
+We see in Table \ref{tab:times} that the the structured random matrices are
+able to compute the solution much more quickly than the completely random
+matrix, with the exception of the operator using the fast Walsh-Hadamard
+transform, which suffers from a slow implementation in \textsc{Matlab}. However,
+the transform has the same complexity as the FFT and so we expect that if the
+two were implemented similarly, that thet should exhibit similar performance.
+The Toeplitz based sensing matrix is a little slower than the others using a
+fast transform, but this is expected since performing a fast Toeplitz
+matrix-vector multiplication requires using an FFT on a vector that is twice the
+size of the one you wish to multiply. 
+
+Overall the tests indicate the importance of the fast transforms for large
+problems and the possibility of using the RPMS restriction operator with sensing
+matrices other than circulant as originally suggested by
