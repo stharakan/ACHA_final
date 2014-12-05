@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Compressed sensing (CS) has one of the topics that attracted a lot of interests over the past years. Suppose $z$ is a length-$N$ signal. It is said to be $S$-sparse(or compressible) if $z$ can be well approximated using only $S << N$ coefficients under some linear transformation
 $ z=\Psi x $
 where $\Psi$ is the sparsifying basis and $x$ is transform coefficient vector that has at most $S$(significant) nonzero entries.
@@ -134,45 +133,4 @@ $$
 	\end{bmatrix}	
 	$$
 
-
-
-
- 
-While kernel SVMs have strong theoretical foundations, traditional solvers are too slow in practice and a need for more efficient solvers has arisen given the rapid increases in dataset size in the recent past. With increasing proliferation of multicore processors, techniques for parallelizing SVM computation across cores have become more important. Parallel approaches are particularly important for very large datasets where one machine may not be able to store all the data. In addition, it has been argued~\cite{brugger2006parallel} that subsampling is not sufficient for kernel SVMs where every point may end up being a support vector. A recent paper by \cite{hsieh2013divide} studied clustering based decomposition approaches for large datasets and proposed Divide and Conquer-SVM (DC-SVM) algorithm. It reduced computation time by solving subproblems on portions of the data identified by k-means clustering, and using these solutions to initialize the full problem. They recurse this algorithm over each subproblem to further speed up computation. 
-=======
-Kernel methods have emerged as a powerful technique for a variety of machine learning tasks. 
-Support vector machines for the binary classification problem in particular have been studied in great detail and methods for solving them are well understood. 
->>>>>>> a84b37d29f3107229ab96e8f137ac3bb2a912fb4
-
-The initial goal of this research project was to implement this algorithm using Galois and explore the potential for parallelization. 
-DC-SVM involves three steps, all of which can be parallelized: clustering, solving the smaller SVM problems, and concatenating the solutions and solving the full SVM problem with this initialization with dual coordinate descent. 
-We will not address the first of these and the second is fairly straightforward but the final solve is most interesting, and our proposed algorithm will use the Galois framework to parallelize this step. As in DC-SVM, we will solve the problem via dual coordinate descent~(CD). Each step of the CD algorithm involves using dual variable values for all other points and thus the updates are all dependent and cannot be parallelized directly. However, in Theorem, we give a simple condition under which \emph{approximate serializability} holds, namely that the points should have sufficiently low kernel similarity. Galois can then be used to select dual coordinates which can be optimized in parallel. Galois supports priority scheduling and we also propose a scheduling algorithm for kernel SVM in this report. As our next step, we are implementing this algorithm in Galois and will run empirical tests on standard datasets to assess potential speedups.
-
-\subsection{Notation and background}
-Binary SVMs are defined by the following quadratic optimization problem 
-\begin{equation}
-	\text{argmin } \frac{1}{2} ||w||_2^2 + C \sum_{i=1}{n} \xi_i
-	\label{primal}
-\end{equation}
-\begin{equation}
-	\text{subject to } y_i(w^T x_i - b) \geq 1 \,\,\,\,\, \forall i
-	\label{primal_constraint}
-\end{equation}
-
-For kernel SVMs, we replace each dot product $ x^T y $ with a kernel function $k_{\sigma}(x,y)$. 
-A commonly used kernel is the Gaussian or radial basis function (rbf) kernel, where we use $\sigma$ to denote the bandwidth of the kernel.
-\[
-	K_{ij} = k_{\sigma}(x_i,x_j) = \exp \left(-\frac{||x_i - x_j||^2_2}{2 \sigma^2}\right)
-\]
-
-We will solve the kernel SVM dual problem for $\al$, which can be formulated as follows:
-\begin{equation}
-	\text{argmin } \frac{1}{2} \al^T Q \al - \bs{1}^T \al
-	\label{dual}
-\end{equation}
-\begin{equation}
-	\text{subject to } 0 \leq \al_i \leq C \,\,\,\,\, \forall i
-	\label{dual_constraint}
-\end{equation}
-$C$ is defined as in (\ref{primal}), while $Q$ is defined so $Q_{ij} = y_i y_j K(x_i,x_j)$.
 
