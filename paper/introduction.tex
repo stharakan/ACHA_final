@@ -64,6 +64,8 @@ where every left-to-right descending diagonal is constant, i.e. $T_{i,j}=T_{i+1,
 	since $FF^*=F^*F=nI$ and $\Sigma^* \Sigma = I$.
 	
 	Generating the diagonal in this way ensures the resulting circulant matrix is real-valued due to conjugate symmetry.
+	\\
+	Let's take a first row and a first column(without first element) as it was shown in the below matrix.
 	$$
 	T_{n} = \left[ \: 
 	\begin{array}{*{4}{c}}
@@ -88,7 +90,7 @@ where every left-to-right descending diagonal is constant, i.e. $T_{i,j}=T_{i+1,
 	\right]
 	$$
 	\\
-	We take a first row and a first column(without first element) as it was shown in the above matrix. We put a first row and zero and first column without first element(it was flipped). So the vector was circulated (length is $2n$). It is important to note that matrix contains toeplitz submatrix on diagonal position.Based on diagonal matrix  it is possible to generate $C_{2n}$ matrix, then toeplitz $T_{n}$.
+	 We put a first row and zero and first column without first element(it was flipped). So the vector was circulated (length is $2n$). It is important to note that matrix contains toeplitz submatrix on diagonal position.Based on diagonal matrix  it is possible to generate $C_{2n}$ matrix, then toeplitz $T_{n}$.
 	\\
 	$$
 	C_{2n} =\begin{bmatrix}
@@ -110,7 +112,7 @@ where every left-to-right descending diagonal is constant, i.e. $T_{i,j}=T_{i+1,
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{figs/HadamardMatrices_800}
-\caption{Different size of Hadamard matrix (white color is "-1", black color is "+1".}
+\caption{Different size of Hadamard matrix (white color is "-1", black color is "+1".)}
 \label{fig:HadamardMatrices_800}
 \end{figure}
 
@@ -120,6 +122,9 @@ where every left-to-right descending diagonal is constant, i.e. $T_{i,j}=T_{i+1,
 	An equivalent definition of the Hadamard matrices is given by 
 	$$ H_{n} H_{n}^T = n  I_{n} $$
 	where $I_{n}$ is the $n \times n$ identity matrix.
+	%---- this part can be removed ------------
+	For example, one of way to construct Hadamard matrix is shown here :
+	
 	$$
 	H_{1} = \begin{bmatrix}
 	1
