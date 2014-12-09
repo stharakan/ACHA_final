@@ -1,15 +1,17 @@
+Compressive sensing (CS) is a topic that attracted a lot of interest in the recent years.
+The fundamental problem to solve is the basis pursuit problem, wherein we are trying to 
+recover a length $n$ signal $z$ from $m$ measurements $y$ and $m \ll n$. In general 
+this problem is underdetermined, but it is well posed when the solution $z$ is sparse 
+in some basis $\Psi$. Then we let $\Psi x = z$, and assume $x$ is $S$-sparse, or has $S$ nonzero entries. We call $x$, and, by extension $z$, compressible if it can at least be can be well approximated using only $S \ll N$ coefficients. Then we define the Basis pursuit problem as follows:
 
-Compressive sensing (CS) has one of the topics that attracted a lot of interests over the past years. Suppose $z$ is a length-$N$ signal. We want to recover original signal $z$ from received signal $y$. It is said to be $S$-sparse(or compressible) if $z$ can be well approximated using only $S \ll N$ coefficients under some linear transformation
-$ z=\Psi x $
-where $\Psi$ is the sparsifying basis and $x$ is transform coefficient vector that has at most $S$(significant) nonzero entries.
-
-The Basis pursuit problem 
 \begin{equation}
 \min ||x||_{l_1} \quad \text{ subject to } \quad \Phi \Psi x=y
 \end{equation}
 
 
-where $\Psi$ is an $n \times n$ orthogonal matrix corresponding to the basis in which our signal $z = \Psi x$ is $S$-sparse. $\Phi$ is sensing $m \times n$ matrix and $m\ll n$. 
+where $\Psi$ is the $n \times n$ orthogonal matrix corresponding to sparsifying basis
+above and $\Phi$ is an $m \times n$ sensing matrix and as above we take $m\ll n$. 
+
 \subsection*{Structured matrix}
 \textbf{Toeplitz} and \textbf{Circulant} matrices have the forms, respectively,
 \\
@@ -31,22 +33,16 @@ t_{2}  & t_{3}  & ...    & t_{1}
 $$
 \\
 where every left-to-right descending diagonal is constant, i.e. $T_{i,j}=T_{i+1,j+1}.$ If $T$ satisfies the additional property that $t_{i}=t_{n+i}, \forall i,$ it is a circulant matrix $C$.
-	Any Circulant matrix can be diagonalized by a Fourier transform \cite{wotao} , i.e. obeying
+	Any Circulant matrix can be diagonalized by a Fourier transform \cite{wotao}, i.e. obeying
 	$$ C=\frac{1}{\sqrt{n}} F^* \Sigma F $$ with $F$ as the discrete Fourier matrix
 	$F_{t,w}=e^{-i\; 2\pi(t-1)(w-1)/n}, \qquad 1 \le t,w \le n$.
 	
+	Note this factorization ensures that $C$ will be orthogonal, i.e.
+	$$ C^*C=\dfrac{{1}}{n} F^* \Sigma F F^* \Sigma F = nI, $$
+	since $FF^*=F^*F=nI$ and $\Sigma^* \Sigma = I$ (if we choose the diagonal of $\Sigma$ 
+	to have magnitude $1$).
 	
-	$$
-	\Sigma = \begin{bmatrix}
-	\sigma_{1} & 0 & ...& 0           \\[0.3em]
-	0 & \sigma_{2} & ... & 0 \\[0.3em]
-	\ddots &\ddots & \ddots &      \\[0.3em]
-	0 & 0 & ... & \sigma_{n}        
-	\end{bmatrix} $$
-	\\
-	a diagonal matrix whose entries are unit magnitude complex numbers with random phases.
-\\
-	According to \cite{romberg2009} $\sigma_{w}$ was generated as follows:
+According to \cite{romberg2009}, the diagonal $\sigma_{w}$ of $\Sigma$ was generated enforcing conjugate symmetry to ensure that the resulting circulant matrix is real-valued. The following rules were used in construction:
     	
 	$w=1\qquad \qquad \qquad : \; \sigma_{1} \sim \pm$ 1 with equal probability,
 	\\[1em]
@@ -55,15 +51,10 @@ where every left-to-right descending diagonal is constant, i.e. $T_{i,j}=T_{i+1,
 	$w=n/2+1 \qquad \; \; \, : \; \sigma_{n/2+1} \sim \pm 1 $ with equal probability 
 	\\[1em]
 	$n/2+2 \le w \le n \; \; : \; \sigma_{w}=\sigma^{*}_{n-w+2}$, conjugate of  $\sigma_{n-w+2}$.
-	\\[1em]
     
-	The construction ensures that $C$ will be orthogonal
-	$$ C^*C=\dfrac{{1}}{n} F^* \Sigma F F^* \Sigma F = nI $$
-	since $FF^*=F^*F=nI$ and $\Sigma^* \Sigma = I$.
-	
-	Generating the diagonal in this way ensures the resulting circulant matrix is real-valued due to conjugate symmetry.
-	\\
-	Let's take a first row and a first column(without first element) as it was shown in the below matrix.
+	Now we will demonstrate how Toeplitz matrices can be embedded in larger systems that 
+	are circulant. Breaking up the $2n-1$ degrees of freedom into two vectors as shown 
+	below,
 	$$
 	T_{n} = \left[ \: 
 	\begin{array}{*{4}{c}}
@@ -87,9 +78,10 @@ where every left-to-right descending diagonal is constant, i.e. $T_{i,j}=T_{i+1,
 	\end{array}
 	\right]
 	$$
-	\\
-	 We put a first row and zero and first column without first element(it was flipped). So the vector was circulated (length is $2n$). It is important to note that matrix contains toeplitz submatrix on diagonal position.Based on diagonal matrix  it is possible to generate $C_{2n}$ matrix, then toeplitz $T_{n}$.
-	\\
+	We now take the horizontal vector and leave it in place, and add a placeholder $0$. 
+	Finally we add the vertical vector above after it has been flipped and transposed to 
+	the first row of our new matrix. If we circulate these entries, the resulting circulant
+	matrix has $T_n$ in the top corner. 
 	$$
 	C_{2n} =\begin{bmatrix}
 	t_{1}   & t_{2} & ...    & t_{n}  & 0   & t_{2n-1} & ... &  t_{n+1}   \\[0.3em]
@@ -102,26 +94,21 @@ where every left-to-right descending diagonal is constant, i.e. $T_{i,j}=T_{i+1,
 	T_{n} & B_{n}            \\[0.3em]
 	B_{n} & T_{n}   
 	\end{bmatrix}
+	$$	
+	Thus, we can perform a fast circulant multiply on this system and extract the value we
+	want, $T_n x$, from the top half of the resulting vector:
 	$$
+	\begin{bmatrix} C_{2n} 
+	\end{bmatrix} 
+	\begin{bmatrix} x \\[0.3em] 0 \end{bmatrix} =
+	\begin{bmatrix}
+	T_{n} & B_{n}            \\[0.3em]
+	B_{n} & T_{n}   
+\end{bmatrix} \begin{bmatrix} x \\[0.3em] 0 \end{bmatrix}
+= \begin{bmatrix} T_n x \\[0.3em] B_n x \end{bmatrix}
+ $$
 
-	\textbf{Hadamard} matrix is a square matrix whose entries are either $+1$ or $-1$ and whose rows are mutually orthogonal.
-
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.7\linewidth]{figs/HadamardMatrices_800}
-\caption{Different size of Hadamard matrix (white color is "-1", black color is "+1".)}
-\label{fig:HadamardMatrices_800}
-\end{figure}
-
-
-
-
-	An equivalent definition of the Hadamard matrices is given by 
-	$$ H_{n} H_{n}^T = n  I_{n} $$
-	where $I_{n}$ is the $n \times n$ identity matrix.
-	%---- this part can be removed ------------
-	For example, one of way to construct Hadamard matrix is shown here :
+	\textbf{Hadamard} matrix is a square matrix whose entries are either $+1$ or $-1$ and whose rows are mutually orthogonal.For example, one of way to construct Hadamard matrix is shown here :
 	
 	$$
 	H_{1} = \begin{bmatrix}
@@ -146,4 +133,5 @@ where every left-to-right descending diagonal is constant, i.e. $T_{i,j}=T_{i+1,
 	H_{2^{n-1}}& -H_{2^{n-1}}            
 	\end{bmatrix}	
 	$$
-
+These matrices define the Hadamard transform, which is a generalized Fourier transform 
+that we will use in our experiments section. 
