@@ -1,2 +1,34 @@
-\paragraph{Parallel SVM}
-Parallel SVM algorithms can broadly be classified into explicit and implicit approaches. Explicit approaches identify  independent components of the problem and use parallel frameworks such as OpenMP, MPI, CUDA/OpenCL or MapReduce to directly encode this parallelism. Implicit approaches represent the calculations required for the SVM problem via matrix operations for which highly optimized parallel libraries exist. These approaches have their own advantages and disadvantages some of which we will discuss below. A detailed comparison and empirical analysis of popular explicit and implicit approaches on CPUs and GPUs is presented in.
+\paragraph{Related Work}
+Our work expands on the work presented in two previous papers, \cite{doetal} and \cite{romberg2009}, each of which proposed a different random sensing matrix framework. \cite{wotao} motivated a different random Toeplitz structure, which we will discuss in the next section. \cite{doetal} characterized random sensing matrices as the product of three matrices: $DFR$. The structure of each is outlined below:
+
+\begin{itemize}
+	\item $D\in \mathbb{R}^{M\times N}$ (output randomizer) is a subsampling matrix/operator which randomly selects a subset of the entries of a vector, possibly permuting it. We call this subsampling.
+	\item $F\in\mathbb{C}^{N\times N}$ is an orthonormal matrix. We usually use a fast transform like the FFT or fast Walsh-Hadamard transform to ensure fast matrix-vector multiplies.
+	\item $R\in\mathbb{R}^{N\times N}$ (input randomizer) is one of the following:
+		\begin{itemize}
+			\item A uniform random permutation matrix, corresponding to global randomization
+			\item A diagonal matrix whose entries take on $\pm 1$ with probability $1/2$, which we refer to as local randomization.
+		\end{itemize}
+\end{itemize}
+
+While the approach in \cite{romberg2009} was similar, it notably had no input randomizer. This was due to fact that the matrix was a circulant matrix generated from a random phase, and then coupled with a random selection operator. The random selection operator here played the same role as $D$ above. However, \cite{romberg2009} proposed another method he called randomly premodulated summation (RPMS). Instead of selecting rows of a vector at random, RPMS adds chunks of the vector together to create a smaller vector. To ensure randomization, the entries of the original vector are added after being multiplied by $\pm 1$. While the theoretical bounds for RPMS were worse by a log factor, it is important to note that it is much easier to implement in hardware.
+
+\cite{wotao} presented studies on circulant and toeplitz matrices, but implemented them by taking Bernoulli variables, or $\pm1$ along the first row and/or column. This randomization is different than the one in \cite{romberg2009} as it is more restrictive in the values it can take on. 
+
+\paragraph{Our Contributions}
+Our work can be summarized as follows
+\begin{itemize}
+	\item We have combined the structures \cite{doetal} and the subsampling operator 
+		of \cite{romberg2009} to propose a new type of structured random matrix which offers 
+		comprable practical performance. In the language of the previous works, this refers
+		to making $D$ matrix different from the one used in \cite{doetal}, where the new $D$
+		represents RPMS. We have run some tests with this structure and compared it to 
+		our results on other types of structured matrices.
+	\item We implemented a randomized Toeplitz matrix that built on the random structure
+		used by \cite{romberg2009} for circulant matrices by expanding the system to size
+		$2N$. A Toeplitz matrix product can be computed efficiently using this notion that 
+		it is embedded in a circulant system of double the size. Using this knowledge, we 
+		could combine the phase generation outlined in \cite{romberg2009} to generate a 
+		Toeplitz matrix in a different way than how it is done in \cite{wotao}. We also ran 
+		tests on these to quantify their effectiveness. 
+\end{itemize}
