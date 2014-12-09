@@ -1,7 +1,11 @@
-There are various parts to this project which we may not be able to address in the limited time span:
+There are various parts to this project which we were not yet able to address:
 \begin{itemize}
-\item Solvers for SVM implement various heuristics such as shrinking and caching of kernel values which we will not be able to implement for this project, but which may be crucial for performance.
-\item Performance on multicore machines can depend on whether the required data is available in the closest cache or in the same socket. This may require some engineering considerations to ensure that components of $\al$ are allocated to processors where they have data easily available.
-\item The extension of our project to the general SVM case for the SMO algorithm is expected to be straightforward but is beyond the scope of this project.
-\item While we have presented an algorithm with low serialization error, it is unclear how this error affects gradient descent procedure. Since gradient descent is self-correcting, we expect the algorithm to perform well in practice but the theoretical analysis is an important open question.
+	\item We would like to see empirically how sparsity affects each of the methods we 
+		have looked at to compare with the theory. In 
+		\cite{wotao}, they had some results, but not for most of the matrices we 
+		compared here. 
+	\item We did most minimizations in the $TV$ norm, but we would like to see an 
+		implementation of an ADMM (alternating direction method of multipliers) on an
+		objective function containing both the $L_1$ and the $TV$ norms. \cite{wotao}
+		implemented this, but not with the randomizations discussed here. 
 \end{itemize}
