@@ -2,7 +2,6 @@
 Compressive sensing (CS) has one of the topics that attracted a lot of interests over the past years. Suppose $z$ is a length-$N$ signal. We want to recover original signal $z$ from received signal $y$. It is said to be $S$-sparse(or compressible) if $z$ can be well approximated using only $S \ll N$ coefficients under some linear transformation
 $ z=\Psi x $
 where $\Psi$ is the sparsifying basis and $x$ is transform coefficient vector that has at most $S$(significant) nonzero entries.
-\\
 
 The Basis pursuit problem 
 \begin{equation}
@@ -48,8 +47,7 @@ where every left-to-right descending diagonal is constant, i.e. $T_{i,j}=T_{i+1,
 	a diagonal matrix whose entries are unit magnitude complex numbers with random phases.
 \\
 	According to \cite{romberg2009} $\sigma_{w}$ was generated as follows:
-    \\[1em]
-	
+    	
 	$w=1\qquad \qquad \qquad : \; \sigma_{1} \sim \pm$ 1 with equal probability,
 	\\[1em]
 	$2 \le w < n/2+1 \; \; : \; \sigma_{w}=e^{i\theta w}, where \; {\theta}_{w} \sim Uniform(0,2\pi) $
