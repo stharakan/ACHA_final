@@ -1,8 +1,7 @@
-<<<<<<< HEAD
-Compressed sensing (CS) has one of the topics that attracted a lot of interests over the past years. Suppose $z$ is a length-$N$ signal. It is said to be $S$-sparse(or compressible) if $z$ can be well approximated using only $S << N$ coefficients under some linear transformation
+
+Compressive sensing (CS) has one of the topics that attracted a lot of interests over the past years. Suppose $z$ is a length-$N$ signal. We want to recover original signal $z$ from received signal $y$. It is said to be $S$-sparse(or compressible) if $z$ can be well approximated using only $S \ll N$ coefficients under some linear transformation
 $ z=\Psi x $
 where $\Psi$ is the sparsifying basis and $x$ is transform coefficient vector that has at most $S$(significant) nonzero entries.
-\\
 
 The Basis pursuit problem 
 \begin{equation}
@@ -10,8 +9,7 @@ The Basis pursuit problem
 \end{equation}
 
 
-Where $\Psi$ is an $n \times n$ orthogonal matrix corresponding to the basis in which our signal $z = \Psi x$ is $S$-sparse. $\Phi$ is our sensing matrix. 
-\\
+where $\Psi$ is an $n \times n$ orthogonal matrix corresponding to the basis in which our signal $z = \Psi x$ is $S$-sparse. $\Phi$ is sensing $m \times n$ matrix and $m\ll n$. 
 \subsection*{Structured matrix}
 \textbf{Toeplitz} and \textbf{Circulant} matrices have the forms, respectively,
 \\
@@ -32,9 +30,12 @@ t_{2}  & t_{3}  & ...    & t_{1}
 \end{bmatrix} 
 $$
 \\
-	Any Circulant matrix can be diagonalized by a Fourier transform, i.e. obeying
+where every left-to-right descending diagonal is constant, i.e. $T_{i,j}=T_{i+1,j+1}.$ If $T$ satisfies the additional property that $t_{i}=t_{n+i}, \forall i,$ it is a circulant matrix $C$.
+	Any Circulant matrix can be diagonalized by a Fourier transform \cite{wotao} , i.e. obeying
 	$$ C=\frac{1}{\sqrt{n}} F^* \Sigma F $$ with $F$ as the discrete Fourier matrix
-	$F_{t,w}=e^{-i\; 2\pi(t-1)(w-1)/n}, \qquad 1 \le t,w \le n$
+	$F_{t,w}=e^{-i\; 2\pi(t-1)(w-1)/n}, \qquad 1 \le t,w \le n$.
+	
+	
 	$$
 	\Sigma = \begin{bmatrix}
 	\sigma_{1} & 0 & ...& 0           \\[0.3em]
@@ -42,24 +43,27 @@ $$
 	\ddots &\ddots & \ddots &      \\[0.3em]
 	0 & 0 & ... & \sigma_{n}        
 	\end{bmatrix} $$
+	\\
 	a diagonal matrix whose entries are unit magnitude complex numbers with random phases.
 \\
-	We generate $\sigma_{w}$ as follows:
-	\\[1em]
-	
+	According to \cite{romberg2009} $\sigma_{w}$ was generated as follows:
+    	
 	$w=1\qquad \qquad \qquad : \; \sigma_{1} \sim \pm$ 1 with equal probability,
 	\\[1em]
 	$2 \le w < n/2+1 \; \; : \; \sigma_{w}=e^{i\theta w}, where \; {\theta}_{w} \sim Uniform(0,2\pi) $
 	\\[1em]
 	$w=n/2+1 \qquad \; \; \, : \; \sigma_{n/2+1} \sim \pm 1 $ with equal probability 
 	\\[1em]
-	
 	$n/2+2 \le w \le n \; \; : \; \sigma_{w}=\sigma^{*}_{n-w+2}$, conjugate of  $\sigma_{n-w+2}$.
+	\\[1em]
+    
+	The construction ensures that $C$ will be orthogonal
+	$$ C^*C=\dfrac{{1}}{n} F^* \Sigma F F^* \Sigma F = nI $$
+	since $FF^*=F^*F=nI$ and $\Sigma^* \Sigma = I$.
 	
-	$$
-	$$
-	Generating the diagonal in this way ensures the resulting circulant matrix is real-valued due 
-	to conjugate symmetry.
+	Generating the diagonal in this way ensures the resulting circulant matrix is real-valued due to conjugate symmetry.
+	\\
+	Let's take a first row and a first column(without first element) as it was shown in the below matrix.
 	$$
 	T_{n} = \left[ \: 
 	\begin{array}{*{4}{c}}
@@ -84,6 +88,8 @@ $$
 	\right]
 	$$
 	\\
+	 We put a first row and zero and first column without first element(it was flipped). So the vector was circulated (length is $2n$). It is important to note that matrix contains toeplitz submatrix on diagonal position.Based on diagonal matrix  it is possible to generate $C_{2n}$ matrix, then toeplitz $T_{n}$.
+	\\
 	$$
 	C_{2n} =\begin{bmatrix}
 	t_{1}   & t_{2} & ...    & t_{n}  & 0   & t_{2n-1} & ... &  t_{n+1}   \\[0.3em]
@@ -97,19 +103,26 @@ $$
 	B_{n} & T_{n}   
 	\end{bmatrix}
 	$$
-	
+
 	\textbf{Hadamard} matrix is a square matrix whose entries are either $+1$ or $-1$ and whose rows are mutually orthogonal.
+
+
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.7\linewidth]{HadamardMatrices_800}
-\caption{}
+\includegraphics[width=0.7\linewidth]{figs/HadamardMatrices_800}
+\caption{Different size of Hadamard matrix (white color is "-1", black color is "+1".)}
 \label{fig:HadamardMatrices_800}
 \end{figure}
+
+
 
 
 	An equivalent definition of the Hadamard matrices is given by 
 	$$ H_{n} H_{n}^T = n  I_{n} $$
 	where $I_{n}$ is the $n \times n$ identity matrix.
+	%---- this part can be removed ------------
+	For example, one of way to construct Hadamard matrix is shown here :
+	
 	$$
 	H_{1} = \begin{bmatrix}
 	1
@@ -133,8 +146,4 @@ $$
 	H_{2^{n-1}}& -H_{2^{n-1}}            
 	\end{bmatrix}	
 	$$
-
-
-
-
 
