@@ -2,8 +2,11 @@ We ran two types of tests to validate that preexisiting models worked and were
 comparable to our proposed sensing matrices that combined the two types of
 models. In one, we simulate compressed sensing by creating sensing operators,
 measuring an image and then solving a TV-minimization problem to attempt to
-recover the image. We then compare the recovered image to the original to
-determine the relative error. Concretely, we compute the relative error
+recover the image. Note that most natural images (and the unnatural one that we
+are using for the test) have gradients that are nearly sparse and so should be
+able to be reconstructed by solving the basis pursuit problem using the $TV$
+instead of $\ell_1$ norm.  We then compare the recovered image to the original
+to determine the relative error. Concretely, we compute the relative error
 $\varepsilon$ as
 
 \begin{equation}
@@ -60,7 +63,7 @@ randomizers. We do not use an input randomizer with circulant or Toeplitz
 matrices since we could not converge to a solution using those methods. We see
 that the reconstruction errors for almost all of the methods are comparable.
 However, in the case of a Fourier transform sensing matrix with RPMS
-subsampling operator does not work well. In addation to not achieving a
+subsampling operator does not work well. In addition to not achieving a
 solution as good as the othertested methods, it showed poor convergence
 compared to the simpler subsampling methods in the sense that it took longer to
 converge. We are not convinced that the RPMS method is working in that case,
@@ -90,7 +93,7 @@ of computing matrix-vector products with the random matrix, but also due to
 memory restructions.
 
 Table \ref{tab:times} summarizes the results of the second experiment. We see
-that the the structured random matrices are able to compute the solution much
+that the structured random matrices are able to compute the solution much
 more quickly than the completely random matrix, with the exception of the
 operator using the fast Walsh-Hadamard transform, which suffers from a slow
 implementation in \textsc{Matlab}. However, the transform has the same
