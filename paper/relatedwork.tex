@@ -7,13 +7,13 @@ Our work expands on the work presented in two previous papers, \cite{doetal} and
 	\item $R\in\mathbb{R}^{N\times N}$ (input randomizer) is one of the following:
 		\begin{itemize}
 			\item A uniform random permutation matrix, corresponding to global randomization
-			\item A diagonal matrix whose entries take on $\pm 1$ with probability $1/2$, which we refer to as local randomization.
+			\item A diagonal matrix whose entries take on $\pm 1$ with probability $1/2$, or Bernoulli random variables. We refer to this as local randomization.
 		\end{itemize}
 \end{itemize}
 
-While the approach in \cite{romberg2009} was similar, it notably had no input randomizer. This was due to fact that the matrix was a circulant matrix generated from a random phase, and then coupled with a random selection operator. The random selection operator here played the same role as $D$ above. However, \cite{romberg2009} proposed another method he called randomly premodulated summation (RPMS). Instead of selecting rows of a vector at random, RPMS adds chunks of the vector together to create a smaller vector. To ensure randomization, the entries of the original vector are added after being multiplied by $\pm 1$. While the theoretical bounds for RPMS were worse by a log factor, it is important to note that it is much easier to implement in hardware.
+While the approach in \cite{romberg2009} was similar, it notably had no input randomizer. This was due to fact that the matrix was a circulant matrix generated from a random phase, and then coupled with a random selection operator. The random selection operator here played the same role as $D$ above. However, \cite{romberg2009} proposed another method he called randomly premodulated summation (RPMS). Instead of selecting rows of a vector at random, RPMS adds chunks of the vector together to create a smaller vector. To ensure randomization, the entries of the original vector are added after being multiplied by a Bernoulli random variable. While the theoretical bounds for RPMS were worse by a log factor, it is important to note that it is much easier to implement in hardware.
 
-\cite{wotao} presented studies on circulant and toeplitz matrices, but implemented them by taking Bernoulli variables, or $\pm1$ along the first row and/or column. This randomization is different than the one in \cite{romberg2009} as it is more restrictive in the values it can take on. 
+\cite{wotao} presented studies on circulant and toeplitz matrices, but implemented them by taking Bernoulli variables along the first row and/or column. This randomization is different than the one in \cite{romberg2009} as it is more restrictive in the values it can take on. 
 
 \paragraph{Our Contributions}
 Our work can be summarized as follows
